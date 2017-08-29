@@ -1,22 +1,19 @@
-var exec = null;
-if(Meteor.isCordova) {
-	exec = require("cordova/exec");
-	NativeUtils.getGPSState = function(success, failure, config) {
-
-		var dialog = (config && config.dialog) || false;
-
-		console.log("CONFIG:" + JSON.stringify(config));
-
-		exec(
-			success || function() {},
-			failure || function() {},
-			'NativeUtils',
-			'getGPSState',
-			[dialog]
-			);
-	}
+const exec = require("cordova/exec");
+const NativeUtils = {
 }
-var NativeUtils = {
+NativeUtils.getGPSState = function(success, failure, config) {
+
+	var dialog = (config && config.dialog) || false;
+
+	console.log("CONFIG:" + JSON.stringify(config));
+
+	exec(
+		success || function() {},
+		failure || function() {},
+		'NativeUtils',
+		'getGPSState',
+		[dialog]
+		);
 }
 
 module.exports = NativeUtils;
