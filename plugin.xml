@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="org.flybuy.nativeutils"
+        version="0.0.3">
+    <name>NativeUtils</name>
+    <description>Native Utilities For PhoneGap</description>
+    <license>Apache 2.0</license>
+    <keywords>gps, utils, phonegap</keywords>
+    <js-module src="www/NativeUtils.js" name="NativeUtils">
+        <clobbers target="window.plugins.nativeUtils" />
+    </js-module>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="NativeUtils">
+                <param name="android-package" value="org.flybuy.nativeutils.NativeUtils" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+        
+        <source-file src="src/android/NativeUtils.java" target-dir="src/org/flybuy/nativeutils" />
+    </platform>
+    
+    <platform name="ios">
+        <header-file src="src/ios/NativeUtils.h" />
+        <source-file src="src/ios/NativeUtils.m" />
+        <framework src="CoreLocation.framework" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="NativeUtils">
+                <param name="ios-package" value="NativeUtils" />
+            </feature>
+        </config-file>
+    </platform>
+</plugin>
